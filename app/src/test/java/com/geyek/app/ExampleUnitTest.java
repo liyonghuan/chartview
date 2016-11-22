@@ -1,4 +1,4 @@
-package com.geyek.app;
+package com.geyek.library;
 
 import org.junit.Test;
 

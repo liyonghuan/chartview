@@ -1,4 +1,4 @@
-package com.geyek.app;
+package com.geyek.library;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
