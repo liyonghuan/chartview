@@ -1,4 +1,4 @@
-package com.geyek.library;
+package com.geyek.widget;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
