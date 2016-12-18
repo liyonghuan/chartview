@@ -1,4 +1,4 @@
-package com.geyek.library;
+package com.geyek.widget;
 
 import org.junit.Test;
 
