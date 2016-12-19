@@ -15,28 +15,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mCharView = (GeyekChartView) findViewById(R.id.chartview);
-        mCharView.setXNum(3);
-        mCharView.setSubXNum(5);
-        mCharView.setYNum(3);
-        mCharView.setSubYNum(10);
-        mCharView.setLineColor(Color.parseColor("#595959"));
-        mCharView.setLineWidth(5);
-        mCharView.setSubLineColor(Color.parseColor("#1F1F1F"));
-        mCharView.setSubLineWidth(2);
-        mCharView.setFromColor(Color.RED);
-        mCharView.setToColor(Color.YELLOW);
-        mCharView.setData(10);
-        mCharView.setData(20);
-        mCharView.setData(30);
-        mCharView.setData(15);
-        mCharView.setData(3);
-        mCharView.setData(24);
-        mCharView.setData(13);
-        mCharView.setData(22);
-        mCharView.setData(7);
-        mCharView.setData(15);
-        mCharView.setData(30);
-        mCharView.setData(14);
-        mCharView.setData(5, 2);
+        DemoBackground demoBackground = new DemoBackground();
+        demoBackground.setLineColor(Color.parseColor("#595959"));
+        demoBackground.setSubLineColor(Color.parseColor("#1F1F1F"));
+        demoBackground.setLineWidth(5);
+        demoBackground.setSubLineWidth(2);
+        demoBackground.setXNum(3);
+        demoBackground.setSubXNum(5);
+        demoBackground.setYNum(3);
+        demoBackground.setSubYNum(10);
+        mCharView.setForefground(demoBackground);
+
+        DemoBarChart demoBarChart = new DemoBarChart();
+        demoBarChart.setMaxXValue(15);
+        demoBarChart.setMaxYValue(30);
+        demoBarChart.setShaderColor(Color.RED, Color.YELLOW);
+        demoBarChart.setData(10);
+        demoBarChart.setData(20);
+        demoBarChart.setData(30);
+        demoBarChart.setData(15);
+        demoBarChart.setData(3);
+        demoBarChart.setData(24);
+        demoBarChart.setData(13);
+        demoBarChart.setData(22);
+        demoBarChart.setData(7);
+        demoBarChart.setData(15);
+        demoBarChart.setData(28);
+        demoBarChart.setData(14);
+        demoBarChart.setData(5, 2);
+        mCharView.setChart(demoBarChart);
     }
 }

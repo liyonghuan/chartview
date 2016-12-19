@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.geyek.library"
+        applicationId "com.geyek.widget"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
