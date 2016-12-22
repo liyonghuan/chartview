@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:background="#262626"
-        android:layout_height="50dp"
+        android:layout_height="200dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

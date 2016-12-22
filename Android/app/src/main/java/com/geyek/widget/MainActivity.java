@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mCharView = (GeyekChartView) findViewById(R.id.chartview);
+        mCharView.setPadding(40, 40, 40, 40);
+
         DemoBackground demoBackground = new DemoBackground();
         demoBackground.setLineColor(Color.parseColor("#0C0C0C"));
         demoBackground.setSubLineColor(Color.parseColor("#151515"));
@@ -24,13 +26,17 @@ public class MainActivity extends AppCompatActivity {
         demoBackground.setSubXNum(10);
         demoBackground.setYNum(1);
         demoBackground.setSubYNum(0);
-        mCharView.setForefground(demoBackground);
+        //mCharView.setForefground(demoBackground);
 
         DemoBarChart demoBarChart = new DemoBarChart();
         demoBarChart.setMaxXValue(60);
-        demoBarChart.setMaxYValue(1);
+        demoBarChart.setMaxYValue(4);
+        demoBarChart.setSpacing(40);
         demoBarChart.setShaderColor(Color.parseColor("#00ECFF"), Color.parseColor("#0048FF"));
-        demoBarChart.setData(54);
+        demoBarChart.setData(60);
+        demoBarChart.setData(33);
+        demoBarChart.setData(21);
+        demoBarChart.setData(45);
         demoBarChart.setFangXiang(DemoBarChart.FangXiang.HORIZONTAL);
         mCharView.setChart(demoBarChart);
     }
