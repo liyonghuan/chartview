@@ -18,6 +18,7 @@ public class DemoBarChart extends BaseChart {
     private List<Integer> mData = new ArrayList<>();
     private float mMaxXValue;
     private float mMaxYValue;
+    private float mSpacing;
     private int[] mShaderColor;
     private float[] mShaderPosition;
     private int mColor = Color.BLACK;
@@ -55,11 +56,31 @@ public class DemoBarChart extends BaseChart {
     }
 
     public float getCellWidth() {
-        return (mEndX - mStartX) / mMaxXValue;
+        float cellWidth;
+        switch (mFangXiang) {
+            case HORIZONTAL:
+                cellWidth = (mEndX - mStartX) / mMaxXValue;
+                break;
+            case VERTICAL:
+            default:
+                cellWidth = (mEndX - mStartX - mSpacing * (mMaxXValue - 1)) / mMaxXValue;
+                break;
+        }
+        return cellWidth;
     }
 
     public float getCellHeight() {
-        return (mEndY - mStartY) / mMaxYValue;
+        float cellHeight;
+        switch (mFangXiang) {
+            case HORIZONTAL:
+                cellHeight = (mEndY - mStartY - mSpacing * (mMaxYValue - 1)) / mMaxYValue;
+                break;
+            case VERTICAL:
+            default:
+                cellHeight = (mEndY - mStartY) / mMaxYValue;
+                break;
+        }
+        return cellHeight;
     }
 
     public void setMaxXValue(float maxXValue) {
@@ -70,12 +91,20 @@ public class DemoBarChart extends BaseChart {
         }
     }
 
+    public float getMaxXValue() {
+        return mMaxXValue;
+    }
+
     public void setMaxYValue(float maxYValue) {
         if (maxYValue > 0) {
             mMaxYValue = maxYValue;
         } else {
             mMaxYValue = 0;
         }
+    }
+
+    public float getMaxYValue() {
+        return mMaxYValue;
     }
 
     @Override
@@ -106,19 +135,19 @@ public class DemoBarChart extends BaseChart {
             switch (mFangXiang) {
                 case HORIZONTAL:
                     canvas.drawRect(
-                            0,
-                            (size - i - 1) * cellHeight,
-                            integer * cellWidth,
-                            (size - i) * cellHeight,
+                            mStartX,
+                            mStartY + (mMaxYValue - i - 1) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
+                            mStartX + integer * cellWidth,
+                            mStartY + (mMaxYValue - i) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
                             mBarPaint
                     );
                     break;
                 case VERTICAL:
                 default:
                     canvas.drawRect(
-                            i * cellWidth,
+                            mStartX + i * cellWidth + i * mSpacing,
                             mEndY - integer * cellHeight,
-                            (i + 1) * cellWidth,
+                            mStartX + (i + 1) * cellWidth + i * mSpacing,
                             mEndY,
                             mBarPaint
                     );
@@ -131,5 +160,12 @@ public class DemoBarChart extends BaseChart {
         if (fangXiang != null) {
             mFangXiang = fangXiang;
         }
+    }
+
+    public void setSpacing(float spacing) {
+        if (spacing < 0) {
+            spacing = 0;
+        }
+        mSpacing = spacing;
     }
 }

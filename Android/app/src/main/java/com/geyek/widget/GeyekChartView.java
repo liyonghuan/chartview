@@ -20,10 +20,54 @@ public class GeyekChartView extends View {
     private int mHeight;
     private int mWidth;
 
-    private int mPaddingLeft;
-    private int mPaddingTop;
-    private int mPaddingRight;
-    private int mPaddingBottom;
+    private float mPaddingLeft;
+    private float mPaddingTop;
+    private float mPaddingRight;
+    private float mPaddingBottom;
+
+    public void setPaddingLeft(float paddingLeft) {
+        if (paddingLeft < 0) {
+            paddingLeft = 0;
+        }
+        mPaddingLeft = paddingLeft;
+    }
+
+    public void setPaddingRight(float paddingRight) {
+        if (paddingRight < 0) {
+            paddingRight = 0;
+        }
+        mPaddingRight = paddingRight;
+    }
+
+    public void setPaddingTop(float paddingTop) {
+        if (paddingTop < 0) {
+            paddingTop = 0;
+        }
+        mPaddingTop = paddingTop;
+    }
+
+    public void setPaddingBottom(float paddingBottom) {
+        if (paddingBottom < 0) {
+            paddingBottom = 0;
+        }
+        mPaddingBottom = paddingBottom;
+    }
+
+    public void setPadding(float paddingLeft, float paddingTop, float paddingRight, float paddingBottom) {
+        setPaddingLeft(paddingLeft);
+        setPaddingTop(paddingTop);
+        setPaddingRight(paddingRight);
+        setPaddingBottom(paddingBottom);
+    }
+
+    @Override
+    public void setPadding(int left, int top, int right, int bottom) {
+        setPaddingLeft(left);
+        setPaddingTop(top);
+        setPaddingRight(right);
+        setPaddingBottom(bottom);
+        super.setPadding(left, top, right, bottom);
+    }
 
     private int mLeftTagWidth;
     private int mTopTagHeight;
