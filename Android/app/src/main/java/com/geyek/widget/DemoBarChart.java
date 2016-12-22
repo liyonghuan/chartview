@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by LiHuan on 2016/12/19.
  */
-public class DemoBarChart extends BaseChart{
+public class DemoBarChart extends BaseChart {
     private static final String TAG = "DemoBarChart";
 
     private List<Integer> mData = new ArrayList<>();
@@ -23,6 +23,7 @@ public class DemoBarChart extends BaseChart{
     private int mColor = Color.BLACK;
 
     private FangXiang mFangXiang = FangXiang.VERTICAL;
+
     enum FangXiang {
         VERTICAL, HORIZONTAL;
     }
@@ -40,11 +41,11 @@ public class DemoBarChart extends BaseChart{
         mData.add(value);
     }
 
-    public void setShaderColor(int ... color) {
+    public void setShaderColor(int... color) {
         mShaderColor = color;
     }
 
-    public void setShaderPosition(float ... position) {
+    public void setShaderPosition(float... position) {
         mShaderPosition = position;
     }
 
@@ -99,15 +100,36 @@ public class DemoBarChart extends BaseChart{
 
         float cellWidth = getCellWidth();
         float cellHeight = getCellHeight();
-        for (int i = 0; i < mData.size(); i++) {
+        int size = mData.size();
+        for (int i = 0; i < size; i++) {
             Integer integer = mData.get(i);
-            canvas.drawRect(
-                    i * cellWidth,
-                    mEndY - integer * cellHeight,
-                    (i + 1) * cellWidth,
-                    mEndY,
-                    mBarPaint
-            );
+            switch (mFangXiang) {
+                case HORIZONTAL:
+                    canvas.drawRect(
+                            0,
+                            (size - i - 1) * cellHeight,
+                            integer * cellWidth,
+                            (size - i) * cellHeight,
+                            mBarPaint
+                    );
+                    break;
+                case VERTICAL:
+                default:
+                    canvas.drawRect(
+                            i * cellWidth,
+                            mEndY - integer * cellHeight,
+                            (i + 1) * cellWidth,
+                            mEndY,
+                            mBarPaint
+                    );
+                    break;
+            }
+        }
+    }
+
+    public void setFangXiang(FangXiang fangXiang) {
+        if (fangXiang != null) {
+            mFangXiang = fangXiang;
         }
     }
 }
