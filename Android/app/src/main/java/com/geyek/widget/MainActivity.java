@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         mCharView.setBackground(gridGround);
 
         BarChart barChart = new BarChart(mCharView);
-        barChart.setMaxXValue(10);
-        barChart.setMaxYValue(60);
+        barChart.setMaxValue(60);
+        barChart.setMaxItem(10);
         barChart.setSpacing(10);
         barChart.setShaderColor(/*Color.parseColor("#00ECFF"), Color.BLACK, Color.RED, Color.YELLOW, Color.GRAY, */Color.parseColor("#0048FF"));
         barChart.setData(60);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         barChart.setData(34);
         barChart.setData(15);
         barChart.setData(23);
-        barChart.setFangXiang(BarChart.FangXiang.VERTICAL);
+        barChart.setFangXiang(BarChart.FangXiang.HORIZONTAL);
         mCharView.setChart(barChart);
     }
 }
