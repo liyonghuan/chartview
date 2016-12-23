@@ -19,8 +19,8 @@ public class BarChart extends BaseChart {
     private static final String TAG = "BarChart";
 
     private List<Integer> mData = new ArrayList<>();
-    private float mMaxXValue;
-    private float mMaxYValue;
+    private float mMaxValue;
+    private float mMaxItem;
     private float mSpacing;
     private int[] mShaderColor;
     private float[] mShaderPosition;
@@ -60,11 +60,11 @@ public class BarChart extends BaseChart {
         float cellWidth;
         switch (mFangXiang) {
             case HORIZONTAL:
-                cellWidth = mCharView.getDrawableWidth() / mMaxXValue;
+                cellWidth = mCharView.getDrawableWidth() / mMaxValue;
                 break;
             case VERTICAL:
             default:
-                cellWidth = (mCharView.getDrawableWidth() - mSpacing * (mMaxXValue - 1)) / mMaxXValue;
+                cellWidth = (mCharView.getDrawableWidth() - mSpacing * (mMaxItem - 1)) / mMaxItem;
                 break;
         }
         return cellWidth;
@@ -74,38 +74,38 @@ public class BarChart extends BaseChart {
         float cellHeight;
         switch (mFangXiang) {
             case HORIZONTAL:
-                cellHeight = (mCharView.getDrawableHeight() - mSpacing * (mMaxYValue - 1)) / mMaxYValue;
+                cellHeight = (mCharView.getDrawableHeight() - mSpacing * (mMaxItem - 1)) / mMaxItem;
                 break;
             case VERTICAL:
             default:
-                cellHeight = mCharView.getDrawableHeight() / mMaxYValue;
+                cellHeight = mCharView.getDrawableHeight() / mMaxValue;
                 break;
         }
         return cellHeight;
     }
 
-    public void setMaxXValue(float maxXValue) {
-        if (maxXValue > 0) {
-            mMaxXValue = maxXValue;
+    public void setMaxValue(float maxValue) {
+        if (maxValue > 0) {
+            mMaxValue = maxValue;
         } else {
-            mMaxXValue = 0;
+            mMaxValue = 0;
         }
     }
 
-    public float getMaxXValue() {
-        return mMaxXValue;
+    public float getMaxValue() {
+        return mMaxValue;
     }
 
-    public void setMaxYValue(float maxYValue) {
-        if (maxYValue > 0) {
-            mMaxYValue = maxYValue;
+    public void setMaxItem(int maxItem) {
+        if (maxItem > 0) {
+            mMaxItem = maxItem;
         } else {
-            mMaxYValue = 0;
+            mMaxItem = 0;
         }
     }
 
-    public float getMaxYValue() {
-        return mMaxYValue;
+    public float getMaxItem() {
+        return mMaxItem;
     }
 
     @Override
@@ -137,9 +137,9 @@ public class BarChart extends BaseChart {
                 case HORIZONTAL:
                     canvas.drawRect(
                             0,
-                            (mMaxYValue - i - 1) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
+                            (mMaxItem - i - 1) * cellHeight + (mMaxItem - 1 - i) * mSpacing,
                             integer * cellWidth,
-                            (mMaxYValue - i) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
+                            (mMaxItem - i) * cellHeight + (mMaxItem - 1 - i) * mSpacing,
                             mBarPaint
                     );
                     break;
