@@ -5,13 +5,12 @@
                 android:layout_height="match_parent"
                 tools:context="com.geyek.widget.MainActivity">
 
-    <com.geyek.widget.GeyekChartView
+    <com.geyek.widget.diagram.GeyekChartView
         android:id="@+id/chartview"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:background="#262626"
         android:layout_height="200dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

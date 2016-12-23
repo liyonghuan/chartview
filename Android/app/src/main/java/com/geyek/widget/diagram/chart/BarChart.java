@@ -1,4 +1,4 @@
-package com.geyek.widget.chart;
+package com.geyek.widget.diagram.chart;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -6,8 +6,8 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
 
-import com.geyek.widget.GeyekChartView;
-import com.geyek.widget.kernel.BaseChart;
+import com.geyek.widget.diagram.GeyekChartView;
+import com.geyek.widget.diagram.kernel.BaseChart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +15,8 @@ import java.util.List;
 /**
  * Created by LiHuan on 2016/12/19.
  */
-public class DemoBarChart extends BaseChart {
-    private static final String TAG = "DemoBarChart";
+public class BarChart extends BaseChart {
+    private static final String TAG = "BarChart";
 
     private List<Integer> mData = new ArrayList<>();
     private float mMaxXValue;
@@ -24,11 +24,10 @@ public class DemoBarChart extends BaseChart {
     private float mSpacing;
     private int[] mShaderColor;
     private float[] mShaderPosition;
-    private int mColor = Color.BLACK;
 
     private FangXiang mFangXiang = FangXiang.VERTICAL;
 
-    public DemoBarChart(GeyekChartView geyekChartView) {
+    public BarChart(GeyekChartView geyekChartView) {
         super(geyekChartView);
     }
 
@@ -55,11 +54,6 @@ public class DemoBarChart extends BaseChart {
 
     public void setShaderPosition(float... position) {
         mShaderPosition = position;
-    }
-
-    public void setColor(int color) {
-        mColor = color;
-        mShaderColor = null;
     }
 
     public float getCellWidth() {
@@ -118,7 +112,7 @@ public class DemoBarChart extends BaseChart {
     public void onDraw(Canvas canvas) {
         Paint mBarPaint = new Paint();
 
-        if (mShaderColor != null) {
+        if (mShaderColor != null && mShaderColor.length > 1) {
             LinearGradient lg;
             switch (mFangXiang) {
                 case HORIZONTAL:
@@ -131,7 +125,7 @@ public class DemoBarChart extends BaseChart {
             }
             mBarPaint.setShader(lg);
         } else {
-            mBarPaint.setColor(mColor);
+            mBarPaint.setColor((mShaderColor == null || mShaderColor.length < 1) ? Color.BLACK : mShaderColor[0]);
         }
 
         float cellWidth = getCellWidth();
