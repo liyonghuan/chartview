@@ -1,10 +1,13 @@
-package com.geyek.widget;
+package com.geyek.widget.chart;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
+
+import com.geyek.widget.GeyekChartView;
+import com.geyek.widget.kernel.BaseChart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,11 @@ public class DemoBarChart extends BaseChart {
 
     private FangXiang mFangXiang = FangXiang.VERTICAL;
 
-    enum FangXiang {
+    public DemoBarChart(GeyekChartView geyekChartView) {
+        super(geyekChartView);
+    }
+
+    public enum FangXiang {
         VERTICAL, HORIZONTAL;
     }
 
@@ -59,11 +66,11 @@ public class DemoBarChart extends BaseChart {
         float cellWidth;
         switch (mFangXiang) {
             case HORIZONTAL:
-                cellWidth = (mEndX - mStartX) / mMaxXValue;
+                cellWidth = mCharView.getDrawableWidth() / mMaxXValue;
                 break;
             case VERTICAL:
             default:
-                cellWidth = (mEndX - mStartX - mSpacing * (mMaxXValue - 1)) / mMaxXValue;
+                cellWidth = (mCharView.getDrawableWidth() - mSpacing * (mMaxXValue - 1)) / mMaxXValue;
                 break;
         }
         return cellWidth;
@@ -73,11 +80,11 @@ public class DemoBarChart extends BaseChart {
         float cellHeight;
         switch (mFangXiang) {
             case HORIZONTAL:
-                cellHeight = (mEndY - mStartY - mSpacing * (mMaxYValue - 1)) / mMaxYValue;
+                cellHeight = (mCharView.getDrawableHeight() - mSpacing * (mMaxYValue - 1)) / mMaxYValue;
                 break;
             case VERTICAL:
             default:
-                cellHeight = (mEndY - mStartY) / mMaxYValue;
+                cellHeight = mCharView.getDrawableHeight() / mMaxYValue;
                 break;
         }
         return cellHeight;
@@ -115,11 +122,11 @@ public class DemoBarChart extends BaseChart {
             LinearGradient lg;
             switch (mFangXiang) {
                 case HORIZONTAL:
-                    lg = new LinearGradient(mStartX, 0, mEndX, 0, mShaderColor, mShaderPosition, Shader.TileMode.REPEAT);
+                    lg = new LinearGradient(0, 0, mCharView.getDrawableWidth(), 0, mShaderColor, mShaderPosition, Shader.TileMode.REPEAT);
                     break;
                 case VERTICAL:
                 default:
-                    lg = new LinearGradient(0, mStartY, 0, mEndY, mShaderColor, mShaderPosition, Shader.TileMode.REPEAT);
+                    lg = new LinearGradient(0, 0, 0, mCharView.getDrawableHeight(), mShaderColor, mShaderPosition, Shader.TileMode.REPEAT);
                     break;
             }
             mBarPaint.setShader(lg);
@@ -135,20 +142,20 @@ public class DemoBarChart extends BaseChart {
             switch (mFangXiang) {
                 case HORIZONTAL:
                     canvas.drawRect(
-                            mStartX,
-                            mStartY + (mMaxYValue - i - 1) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
-                            mStartX + integer * cellWidth,
-                            mStartY + (mMaxYValue - i) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
+                            0,
+                            (mMaxYValue - i - 1) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
+                            integer * cellWidth,
+                            (mMaxYValue - i) * cellHeight + (mMaxYValue - 1 - i) * mSpacing,
                             mBarPaint
                     );
                     break;
                 case VERTICAL:
                 default:
                     canvas.drawRect(
-                            mStartX + i * cellWidth + i * mSpacing,
-                            mEndY - integer * cellHeight,
-                            mStartX + (i + 1) * cellWidth + i * mSpacing,
-                            mEndY,
+                            i * cellWidth + i * mSpacing,
+                            mCharView.getDrawableHeight() - integer * cellHeight,
+                            (i + 1) * cellWidth + i * mSpacing,
+                            mCharView.getDrawableHeight(),
                             mBarPaint
                     );
                     break;

@@ -3,7 +3,9 @@ package com.geyek.widget;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+
+import com.geyek.widget.chart.DemoBarChart;
+import com.geyek.widget.ground.DemoBackground;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         mCharView = (GeyekChartView) findViewById(R.id.chartview);
         mCharView.setPadding(40, 40, 40, 40);
 
-        DemoBackground demoBackground = new DemoBackground();
+        DemoBackground demoBackground = new DemoBackground(mCharView);
         demoBackground.setLineColor(Color.parseColor("#0C0C0C"));
         demoBackground.setSubLineColor(Color.parseColor("#151515"));
         demoBackground.setLineWidth(20);
@@ -26,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         demoBackground.setSubXNum(10);
         demoBackground.setYNum(1);
         demoBackground.setSubYNum(0);
-        //mCharView.setForefground(demoBackground);
+        mCharView.setForefground(demoBackground);
 
-        DemoBarChart demoBarChart = new DemoBarChart();
+        DemoBarChart demoBarChart = new DemoBarChart(mCharView);
         demoBarChart.setMaxXValue(60);
         demoBarChart.setMaxYValue(4);
         demoBarChart.setSpacing(40);
