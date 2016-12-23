@@ -5,6 +5,9 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.geyek.widget.kernel.BaseChart;
+import com.geyek.widget.kernel.BaseGround;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,35 +102,16 @@ public class GeyekChartView extends View {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         mHeight = getMeasuredHeight();
         mWidth = getMeasuredWidth();
-
-        if (mBackground != null) {
-            mBackground.setStarX(mPaddingLeft + mLeftTagWidth);
-            mBackground.setStartY(mPaddingTop + mTopTagHeight);
-            mBackground.setEndX(mWidth - mPaddingRight - mRightTagWidth);
-            mBackground.setEndY(mHeight - mPaddingBottom - mBottomTagHeight);
-        }
-
-        if (mChartList != null) {
-            for (BaseChart chart : mChartList) {
-                chart.setStarX(mPaddingLeft + mLeftTagWidth);
-                chart.setStartY(mPaddingTop + mTopTagHeight);
-                chart.setEndX(mWidth - mPaddingRight - mRightTagWidth);
-                chart.setEndY(mHeight - mPaddingBottom - mBottomTagHeight);
-            }
-        }
-
-        if (mForeground != null) {
-            mForeground.setStarX(mPaddingLeft + mLeftTagWidth);
-            mForeground.setStartY(mPaddingTop + mTopTagHeight);
-            mForeground.setEndX(mWidth - mPaddingRight - mRightTagWidth);
-            mForeground.setEndY(mHeight - mPaddingBottom - mBottomTagHeight);
-        }
         super.onLayout(changed, left, top, right, bottom);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.save();
+        canvas.clipRect(getStartX(), getStartY(), getEndX(), getEndY());
+        canvas.translate(getStartX(), getStartY());
+
         if (mBackground != null) {
             mBackground.onDraw(canvas);
         }
@@ -141,6 +125,8 @@ public class GeyekChartView extends View {
         if (mForeground != null) {
             mForeground.onDraw(canvas);
         }
+
+        canvas.restore();
     }
 
     public GeyekChartView setBackground(BaseGround background) {
@@ -148,10 +134,6 @@ public class GeyekChartView extends View {
             return this;
         }
         mBackground = background;
-        mBackground.setStarX(mPaddingLeft + mLeftTagWidth);
-        mBackground.setStartY(mPaddingTop + mTopTagHeight);
-        mBackground.setEndX(mWidth - mPaddingRight - mRightTagWidth);
-        mBackground.setEndY(mHeight - mPaddingBottom - mBottomTagHeight);
         return this;
     }
 
@@ -160,10 +142,6 @@ public class GeyekChartView extends View {
             return this;
         }
         mForeground = forefground;
-        mForeground.setStarX(mPaddingLeft + mLeftTagWidth);
-        mForeground.setStartY(mPaddingTop + mTopTagHeight);
-        mForeground.setEndX(mWidth - mPaddingRight - mRightTagWidth);
-        mForeground.setEndY(mHeight - mPaddingBottom - mBottomTagHeight);
         return this;
     }
 
@@ -171,11 +149,31 @@ public class GeyekChartView extends View {
         if (chart == null) {
             return this;
         }
-        chart.setStarX(mPaddingLeft + mLeftTagWidth);
-        chart.setStartY(mPaddingTop + mTopTagHeight);
-        chart.setEndX(mWidth - mPaddingRight - mRightTagWidth);
-        chart.setEndY(mHeight - mPaddingBottom - mBottomTagHeight);
         mChartList.add(chart);
         return this;
+    }
+
+    public float getDrawableHeight() {
+        return getEndY() - getStartY();
+    }
+
+    public float getDrawableWidth() {
+        return getEndX() - getStartX();
+    }
+
+    public float getStartX() {
+        return mPaddingLeft + mLeftTagWidth;
+    }
+
+    public float getStartY() {
+        return mPaddingTop + mTopTagHeight;
+    }
+
+    public float getEndX() {
+        return mWidth - mPaddingRight - mRightTagWidth;
+    }
+
+    public float getEndY() {
+        return mHeight - mPaddingBottom - mBottomTagHeight;
     }
 }

@@ -1,7 +1,10 @@
-package com.geyek.widget;
+package com.geyek.widget.ground;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
+import com.geyek.widget.GeyekChartView;
+import com.geyek.widget.kernel.BaseGround;
 
 /**
  * Created by LiHuan on 2016/12/19.
@@ -17,10 +20,14 @@ public class DemoBackground extends BaseGround {
     private Paint mLinePaint = new Paint();
     private Paint mSubLinePaint = new Paint();
 
+    public DemoBackground(GeyekChartView chartView) {
+        super(chartView);
+    }
+
     @Override
     public void onDraw(Canvas canvas) {
         //绘制水平线
-        float height = mEndY - mStartY;
+        float height = mCharView.getDrawableHeight();
         float cellHeight = height / mYNum;
         float cellSubHeight = 0;
         if (mSubYNum > 0) {
@@ -30,9 +37,9 @@ public class DemoBackground extends BaseGround {
         }
         for (int i = 0; i <= mYNum; i++) {
             canvas.drawLine(
-                    mStartX,
+                    0,
                     i * cellHeight,
-                    mEndX,
+                    mCharView.getDrawableWidth(),
                     i * cellHeight,
                     mLinePaint
             );
@@ -40,9 +47,9 @@ public class DemoBackground extends BaseGround {
             if (mSubYNum > 0) {
                 for (int j = 1; j < mSubYNum; j++) {
                     canvas.drawLine(
-                            mStartX,
+                            0,
                             i * cellHeight + j * cellSubHeight,
-                            mEndX,
+                            mCharView.getDrawableWidth(),
                             i * cellHeight + j * cellSubHeight,
                             mSubLinePaint
                     );
@@ -51,7 +58,7 @@ public class DemoBackground extends BaseGround {
         }
 
         //绘制垂直线
-        float width = mEndX - mStartX;
+        float width = mCharView.getDrawableWidth();
         float cellWidth = width / mXNum;
         float cellSubWidth = 0;
         if (mSubXNum > 0) {
@@ -63,9 +70,9 @@ public class DemoBackground extends BaseGround {
         for (int i = 0; i <= mXNum; i++) {
             canvas.drawLine(
                     i * cellWidth,
-                    mStartY,
+                    0,
                     i * cellWidth,
-                    mEndY,
+                    mCharView.getDrawableHeight(),
                     mLinePaint
             );
 
@@ -73,9 +80,9 @@ public class DemoBackground extends BaseGround {
                 for (int j = 1; j < mSubXNum; j++) {
                     canvas.drawLine(
                             i * cellWidth + j * cellSubWidth,
-                            mStartY,
+                            0,
                             i * cellWidth + j * cellSubWidth,
-                            mEndY,
+                            mCharView.getDrawableHeight(),
                             mSubLinePaint
                     );
                 }
