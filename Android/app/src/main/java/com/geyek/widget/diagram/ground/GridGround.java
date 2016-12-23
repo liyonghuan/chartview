@@ -1,16 +1,16 @@
-package com.geyek.widget.ground;
+package com.geyek.widget.diagram.ground;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.geyek.widget.GeyekChartView;
-import com.geyek.widget.kernel.BaseGround;
+import com.geyek.widget.diagram.GeyekChartView;
+import com.geyek.widget.diagram.kernel.BaseGround;
 
 /**
  * Created by LiHuan on 2016/12/19.
  */
-public class DemoBackground extends BaseGround {
-    private static final String TAG = "DemoBackground";
+public class GridGround extends BaseGround {
+    private static final String TAG = "GridGround";
 
     private int mXNum;
     private int mYNum;
@@ -20,7 +20,7 @@ public class DemoBackground extends BaseGround {
     private Paint mLinePaint = new Paint();
     private Paint mSubLinePaint = new Paint();
 
-    public DemoBackground(GeyekChartView chartView) {
+    public GridGround(GeyekChartView chartView) {
         super(chartView);
     }
 

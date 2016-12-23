@@ -1,12 +1,12 @@
-package com.geyek.widget;
+package com.geyek.widget.diagram;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.geyek.widget.kernel.BaseChart;
-import com.geyek.widget.kernel.BaseGround;
+import com.geyek.widget.diagram.kernel.BaseChart;
+import com.geyek.widget.diagram.kernel.BaseGround;
 
 import java.util.ArrayList;
 import java.util.List;

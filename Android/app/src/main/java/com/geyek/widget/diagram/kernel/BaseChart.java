@@ -1,8 +1,8 @@
-package com.geyek.widget.kernel;
+package com.geyek.widget.diagram.kernel;
 
 import android.graphics.Canvas;
 
-import com.geyek.widget.GeyekChartView;
+import com.geyek.widget.diagram.GeyekChartView;
 
 /**
  * Created by LiHuan on 2016-12-18.
