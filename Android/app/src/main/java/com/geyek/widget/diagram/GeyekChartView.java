@@ -161,19 +161,19 @@ public class GeyekChartView extends View {
         return getEndX() - getStartX();
     }
 
-    public float getStartX() {
+    protected float getStartX() {
         return mPaddingLeft + mLeftTagWidth;
     }
 
-    public float getStartY() {
+    protected float getStartY() {
         return mPaddingTop + mTopTagHeight;
     }
 
-    public float getEndX() {
+    protected float getEndX() {
         return mWidth - mPaddingRight - mRightTagWidth;
     }
 
-    public float getEndY() {
+    protected float getEndY() {
         return mHeight - mPaddingBottom - mBottomTagHeight;
     }
 }

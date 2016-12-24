@@ -1,11 +1,11 @@
 package com.geyek.widget;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.geyek.widget.diagram.GeyekChartView;
-import com.geyek.widget.diagram.chart.BarChart;
+import com.geyek.widget.diagram.chart.LineChart;
 import com.geyek.widget.diagram.ground.GridGround;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +20,23 @@ public class MainActivity extends AppCompatActivity {
         mCharView = (GeyekChartView) findViewById(R.id.chartview);
         mCharView.setPadding(40, 40, 40, 40);
 
+        LineChart lineChart = new LineChart(mCharView);
+        lineChart.setOffset(0);
+        lineChart.setPoint(10);
+        lineChart.setMaxItem(10);
+        lineChart.setPoint(40);
+        lineChart.setPoint(30);
+        lineChart.setPoint(70);
+        lineChart.setLineWidth(5);
+        lineChart.setLineColor(Color.RED);
+        lineChart.setAutoMaxValue(true);
+        lineChart.setAutoMinValue(true);
+        lineChart.setPoint(-10);
+        lineChart.setPoint(0);
+        lineChart.setPoint(10);
+        lineChart.setPoint(40);
+        mCharView.setChart(lineChart);
+
         GridGround gridGround = new GridGround(mCharView);
         gridGround.setLineColor(Color.parseColor("#0C0C0C"));
         gridGround.setSubLineColor(Color.parseColor("#151515"));
@@ -31,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
         gridGround.setSubYNum(5);
         mCharView.setBackground(gridGround);
 
-        BarChart barChart = new BarChart(mCharView);
+        /*BarChart barChart = new BarChart(mCharView);
         barChart.setMaxValue(60);
         barChart.setMaxItem(10);
         barChart.setSpacing(10);
-        barChart.setShaderColor(/*Color.parseColor("#00ECFF"), Color.BLACK, Color.RED, Color.YELLOW, Color.GRAY, */Color.parseColor("#0048FF"));
+        barChart.setShaderColor(*//*Color.parseColor("#00ECFF"), Color.BLACK, Color.RED, Color.YELLOW, Color.GRAY, *//*Color.parseColor("#0048FF"));
         barChart.setData(60);
         barChart.setData(33);
         barChart.setData(21);
@@ -44,6 +61,6 @@ public class MainActivity extends AppCompatActivity {
         barChart.setData(15);
         barChart.setData(23);
         barChart.setFangXiang(BarChart.FangXiang.HORIZONTAL);
-        mCharView.setChart(barChart);
+        mCharView.setChart(barChart);*/
     }
 }
