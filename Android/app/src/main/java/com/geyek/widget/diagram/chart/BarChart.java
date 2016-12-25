@@ -9,18 +9,12 @@ import android.graphics.Shader;
 import com.geyek.widget.diagram.GeyekChartView;
 import com.geyek.widget.diagram.kernel.BaseChart;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by LiHuan on 2016/12/19.
  */
 public class BarChart extends BaseChart {
     private static final String TAG = "BarChart";
 
-    private List<Integer> mData = new ArrayList<>();
-    private float mMaxValue;
-    private float mMaxItem;
     private float mSpacing;
     private int[] mShaderColor;
     private float[] mShaderPosition;
@@ -33,19 +27,6 @@ public class BarChart extends BaseChart {
 
     public enum FangXiang {
         VERTICAL, HORIZONTAL;
-    }
-
-    public void setData(int value, int position) {
-        if (mData.size() > position) {
-            mData.remove(position);
-            mData.add(position, value);
-        } else {
-            mData.add(value);
-        }
-    }
-
-    public void setData(int value) {
-        mData.add(value);
     }
 
     public void setShaderColor(int... color) {
@@ -84,30 +65,6 @@ public class BarChart extends BaseChart {
         return cellHeight;
     }
 
-    public void setMaxValue(float maxValue) {
-        if (maxValue > 0) {
-            mMaxValue = maxValue;
-        } else {
-            mMaxValue = 0;
-        }
-    }
-
-    public float getMaxValue() {
-        return mMaxValue;
-    }
-
-    public void setMaxItem(int maxItem) {
-        if (maxItem > 0) {
-            mMaxItem = maxItem;
-        } else {
-            mMaxItem = 0;
-        }
-    }
-
-    public float getMaxItem() {
-        return mMaxItem;
-    }
-
     @Override
     public void onDraw(Canvas canvas) {
         Paint mBarPaint = new Paint();
@@ -130,15 +87,15 @@ public class BarChart extends BaseChart {
 
         float cellWidth = getCellWidth();
         float cellHeight = getCellHeight();
-        int size = mData.size();
+        int size = mPointList.size();
         for (int i = 0; i < size; i++) {
-            Integer integer = mData.get(i);
+            Float value = mPointList.get(i);
             switch (mFangXiang) {
                 case HORIZONTAL:
                     canvas.drawRect(
                             0,
                             (mMaxItem - i - 1) * cellHeight + (mMaxItem - 1 - i) * mSpacing,
-                            integer * cellWidth,
+                            value * cellWidth,
                             (mMaxItem - i) * cellHeight + (mMaxItem - 1 - i) * mSpacing,
                             mBarPaint
                     );
@@ -147,7 +104,7 @@ public class BarChart extends BaseChart {
                 default:
                     canvas.drawRect(
                             i * cellWidth + i * mSpacing,
-                            mCharView.getDrawableHeight() - integer * cellHeight,
+                            mCharView.getDrawableHeight() - value * cellHeight,
                             (i + 1) * cellWidth + i * mSpacing,
                             mCharView.getDrawableHeight(),
                             mBarPaint

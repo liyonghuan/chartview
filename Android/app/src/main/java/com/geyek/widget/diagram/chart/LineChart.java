@@ -6,25 +6,16 @@ import android.graphics.Paint;
 import com.geyek.widget.diagram.GeyekChartView;
 import com.geyek.widget.diagram.kernel.BaseChart;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by LiHuan on 2016/12/23.
  */
 public class LineChart extends BaseChart {
     private static final String TAG = "LineChart";
-    private List<Float> mPointList = new ArrayList<>();
 
     private float mOffset;  //设置偏移量
     private float mCurrentPosition; //标记当前的坐标
-    private int mMaxItem = 1; //当前界面显示的最大条目数,最小为1
-    private float mMaxValue;    //当前单个条目最大的值
-    private float mMinValue;
     private int mLineColor;
     private float mLineWidth;
-    private boolean mIsAutoMaxValue;
-    private boolean mIsAutoMinValue;
 
     public LineChart(GeyekChartView chartView) {
         super(chartView);
@@ -90,56 +81,6 @@ public class LineChart extends BaseChart {
         mOffset = offset;
     }
 
-    public boolean setPointList(List<Float> pointList) {
-        if (pointList == null) {
-            return false;
-        }
-        boolean isSuccess = mPointList.addAll(pointList);
-        refreshMaxValue();
-        refreshMinValue();
-        return isSuccess;
-    }
-
-    public boolean setPoint(float point) {
-        boolean isSuccess = mPointList.add(point);
-        refreshMaxValue(point);
-        refreshMinValute(point);
-        return isSuccess;
-    }
-
-    public void clear() {
-        mPointList.clear();
-    }
-
-    public void setMaxItem(int item) {
-        if (item < 1) {
-            item = 1;
-        }
-        mMaxItem = item;
-    }
-
-    public void setMaxValue(float maxValue) {
-        if (mMaxValue < maxValue) {
-            mMaxValue = maxValue;
-        }
-        if (mMinValue > mMaxValue) {
-            float temp = mMinValue;
-            mMinValue = mMaxValue;
-            mMaxValue = temp;
-        }
-    }
-
-    public void setMinValue(float minValue) {
-        if (mMinValue > minValue) {
-            mMinValue = minValue;
-        }
-        if (mMinValue > mMaxValue) {
-            float temp = mMinValue;
-            mMinValue = mMaxValue;
-            mMaxValue = temp;
-        }
-    }
-
     public void setLineColor(int lineColor) {
         mLineColor = lineColor;
     }
@@ -149,73 +90,5 @@ public class LineChart extends BaseChart {
             lineWidth = 1;
         }
         mLineWidth = lineWidth;
-    }
-
-    public void setAutoMaxValue(boolean autoMaxValue) {
-        mIsAutoMaxValue = autoMaxValue;
-        refreshMaxValue();
-    }
-
-    public void setAutoMinValue(boolean autoMinValue) {
-        mIsAutoMinValue = autoMinValue;
-
-    }
-
-    private void refreshMaxValue() {
-        if (!mIsAutoMaxValue) {
-            return;
-        }
-        float maxValue = 0;
-        for (Float point : mPointList) {
-            if (point == null) {
-                continue;
-            }
-            if (maxValue < point) {
-                maxValue = point;
-            }
-        }
-        if (mMaxValue < maxValue) {
-            mMaxValue = maxValue;
-        }
-    }
-
-    private void refreshMaxValue(float point) {
-        if (!mIsAutoMaxValue) {
-            return;
-        }
-        if (mMaxValue < point) {
-            mMaxValue = point;
-        }
-    }
-
-    private void refreshMinValue() {
-        if (!mIsAutoMaxValue) {
-            return;
-        }
-        float minValue = 0;
-        for (Float point : mPointList) {
-            if (point == null) {
-                continue;
-            }
-            if (minValue > point) {
-                minValue = point;
-            }
-        }
-        if (mMinValue > minValue) {
-            mMinValue = minValue;
-        }
-    }
-
-    private void refreshMinValute(float point) {
-        if (!mIsAutoMinValue) {
-            return;
-        }
-        if (mMinValue > point) {
-            mMinValue = point;
-        }
-    }
-
-    public boolean isAutoMaxValue() {
-        return mIsAutoMaxValue;
     }
 }
