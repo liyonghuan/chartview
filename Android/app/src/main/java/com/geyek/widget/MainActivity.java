@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.geyek.widget.diagram.GeyekChartView;
-import com.geyek.widget.diagram.chart.LineChart;
-import com.geyek.widget.diagram.ground.GridGround;
+import com.geyek.widget.diagram.chart.BarChart;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         mCharView = (GeyekChartView) findViewById(R.id.chartview);
         mCharView.setPadding(40, 40, 40, 40);
 
-        LineChart lineChart = new LineChart(mCharView);
-        lineChart.setOffset(0);
+        /*LineChart lineChart = new LineChart(mCharView);
+        lineChart.setOffset(40);
         lineChart.setPoint(10);
         lineChart.setMaxItem(10);
         lineChart.setPoint(40);
@@ -46,21 +45,21 @@ public class MainActivity extends AppCompatActivity {
         gridGround.setSubXNum(0);
         gridGround.setYNum(3);
         gridGround.setSubYNum(5);
-        mCharView.setBackground(gridGround);
+        mCharView.setBackground(gridGround);*/
 
-        /*BarChart barChart = new BarChart(mCharView);
+        BarChart barChart = new BarChart(mCharView);
         barChart.setMaxValue(60);
         barChart.setMaxItem(10);
         barChart.setSpacing(10);
-        barChart.setShaderColor(*//*Color.parseColor("#00ECFF"), Color.BLACK, Color.RED, Color.YELLOW, Color.GRAY, *//*Color.parseColor("#0048FF"));
-        barChart.setData(60);
-        barChart.setData(33);
-        barChart.setData(21);
-        barChart.setData(5);
-        barChart.setData(34);
-        barChart.setData(15);
-        barChart.setData(23);
-        barChart.setFangXiang(BarChart.FangXiang.HORIZONTAL);
-        mCharView.setChart(barChart);*/
+        barChart.setShaderColor(/*Color.parseColor("#00ECFF"), Color.BLACK, Color.RED, Color.YELLOW, Color.GRAY, */Color.parseColor("#0048FF"));
+        barChart.setPoint(60);
+        barChart.setPoint(33);
+        barChart.setPoint(21);
+        barChart.setPoint(5);
+        barChart.setPoint(34);
+        barChart.setPoint(15);
+        barChart.setPoint(23);
+        barChart.setFangXiang(BarChart.FangXiang.VERTICAL);
+        mCharView.setChart(barChart);
     }
 }
