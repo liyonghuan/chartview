@@ -126,4 +126,8 @@ public class BarChart extends BaseChart {
         }
         mSpacing = spacing;
     }
+
+    public float getSpacing() {
+        return mSpacing;
+    }
 }
