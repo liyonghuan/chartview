@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 
 import com.geyek.widget.diagram.GeyekChartView;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -173,4 +175,63 @@ public abstract class BaseChart {
     public abstract float getCellHeight();
 
     public abstract float getCellWidth();
+
+    public static class Builder {
+        private List<BaseChart> mChartList = new ArrayList<>();
+        private GeyekChartView mGeyekChartView;
+
+        public Builder(GeyekChartView geyekChartView) {
+            mGeyekChartView = geyekChartView;
+        }
+
+        public BaseChart build(Class<? extends BaseChart> clazz) {
+            BaseChart baseChart = null;
+            try {
+                baseChart = newInstance(mGeyekChartView, clazz);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } finally {
+                if (baseChart != null) {
+                    initial(baseChart);
+                    mChartList.add(baseChart);
+                }
+                return baseChart;
+            }
+        }
+
+        private void initial(BaseChart chart) {
+
+        }
+
+        private void refresh() {
+            for (BaseChart chart : mChartList) {
+                initial(chart);
+            }
+        }
+    }
+
+    public static BaseChart newInstance(GeyekChartView chartView, Class<? extends BaseChart> clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Class[] paramTypes = {GeyekChartView.class};
+        Object[] params = {chartView};
+
+        if (clazz == null) {
+            return null;
+        }
+        Constructor con = clazz.getConstructor(paramTypes);
+        if (con == null) {
+            return null;
+        }
+        Object obj = con.newInstance(params);
+        if (obj != null && obj instanceof BaseChart) {
+            return (BaseChart) obj;
+        } else {
+            return null;
+        }
+    }
 }
