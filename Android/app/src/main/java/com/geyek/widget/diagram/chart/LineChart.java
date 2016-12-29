@@ -39,6 +39,10 @@ public class LineChart extends BaseChart {
                 continue;
             }
 
+            if (currentPoint == null) {
+                continue;
+            }
+
             canvas.drawLine(
                     mOffset + (i - 1) * cellWidth,
                     drawableHeight - (prePoint - mMinValue) * cellHeight,
