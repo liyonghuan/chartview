@@ -32,6 +32,7 @@ public class LineChart extends BaseChart {
         float drawableHeight = mCharView.getDrawableHeight();
         float cellHeight = getCellHeight();
         float cellWidth = getCellWidth();
+        float offset = getOffset();
         for (int i = 0; i < size; i++) {
             Float currentPoint = mPointList.get(i);
             if (prePoint == null) {
@@ -43,13 +44,12 @@ public class LineChart extends BaseChart {
                 continue;
             }
 
-            canvas.drawLine(
-                    mOffset + (i - 1) * cellWidth,
-                    drawableHeight - (prePoint - mMinValue) * cellHeight,
-                    mOffset + i * cellWidth,
-                    drawableHeight - (currentPoint - mMinValue) * cellHeight,
-                    paint
-            );
+            float startX = offset + (i - 1) * cellWidth;
+            float startY = drawableHeight - (prePoint - mMinValue) * cellHeight;
+            float endX = mOffset + i * cellWidth;
+            float endY = drawableHeight - (currentPoint - mMinValue) * cellHeight;
+
+            canvas.drawLine(startX, startY, endX, endY, paint);
 
             prePoint = currentPoint;
         }
@@ -85,8 +85,16 @@ public class LineChart extends BaseChart {
         mOffset = offset;
     }
 
+    public float getOffset() {
+        return mOffset;
+    }
+
     public void setLineColor(int lineColor) {
         mLineColor = lineColor;
+    }
+
+    public int getLineColor() {
+        return mLineColor;
     }
 
     public void setLineWidth(float lineWidth) {
@@ -94,5 +102,9 @@ public class LineChart extends BaseChart {
             lineWidth = 1;
         }
         mLineWidth = lineWidth;
+    }
+
+    public float getLineWidth() {
+        return mLineWidth;
     }
 }
