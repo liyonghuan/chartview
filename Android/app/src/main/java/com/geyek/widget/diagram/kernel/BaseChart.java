@@ -40,66 +40,12 @@ public abstract class BaseChart {
 
     public void setAutoMaxValue(boolean autoMaxValue) {
         mIsAutoMaxValue = autoMaxValue;
-        refreshMaxValue();
+        refreshMaxAndMinValue();
     }
 
     public void setAutoMinValue(boolean autoMinValue) {
         mIsAutoMinValue = autoMinValue;
-
-    }
-
-    protected void refreshMaxValue() {
-        if (!mIsAutoMaxValue) {
-            return;
-        }
-        float maxValue = 0;
-        for (Float point : mPointList) {
-            if (point == null) {
-                continue;
-            }
-            if (maxValue < point) {
-                maxValue = point;
-            }
-        }
-        if (mMaxValue < maxValue) {
-            mMaxValue = maxValue;
-        }
-    }
-
-    protected void refreshMaxValue(float point) {
-        if (!mIsAutoMaxValue) {
-            return;
-        }
-        if (mMaxValue < point) {
-            mMaxValue = point;
-        }
-    }
-
-    protected void refreshMinValue() {
-        if (!mIsAutoMaxValue) {
-            return;
-        }
-        float minValue = 0;
-        for (Float point : mPointList) {
-            if (point == null) {
-                continue;
-            }
-            if (minValue > point) {
-                minValue = point;
-            }
-        }
-        if (mMinValue > minValue) {
-            mMinValue = minValue;
-        }
-    }
-
-    protected void refreshMinValute(float point) {
-        if (!mIsAutoMinValue) {
-            return;
-        }
-        if (mMinValue > point) {
-            mMinValue = point;
-        }
+        refreshMaxAndMinValue();
     }
 
     public boolean isAutoMaxValue() {
@@ -110,38 +56,10 @@ public abstract class BaseChart {
         return mIsAutoMinValue;
     }
 
-    public boolean setPointList(List<Float> pointList) {
-        if (pointList == null) {
-            return false;
-        }
-        boolean isSuccess = mPointList.addAll(pointList);
-        refreshMaxValue();
-        refreshMinValue();
-        return isSuccess;
-    }
-
-    public boolean setPoint(float point) {
-        boolean isSuccess = mPointList.add(point);
-        refreshMaxValue(point);
-        refreshMinValute(point);
-        return isSuccess;
-    }
-
-    public void setPoint(float point, int position) {
-        if (mPointList.size() > position) {
-            mPointList.remove(position);
-            mPointList.add(position, point);
-        } else {
-            mPointList.add(point);
-        }
-        refreshMaxValue(point);
-        refreshMinValute(point);
-    }
-
-    public void clear() {
-        mPointList.clear();
-    }
-
+    /**
+     *
+     * @param maxValue
+     */
     public void setMaxValue(float maxValue) {
         if (mMaxValue < maxValue) {
             mMaxValue = maxValue;
@@ -153,10 +71,18 @@ public abstract class BaseChart {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public float getMaxValue() {
         return mMaxValue;
     }
 
+    /**
+     *
+     * @param minValue
+     */
     public void setMinValue(float minValue) {
         if (mMinValue > minValue) {
             mMinValue = minValue;
@@ -168,14 +94,36 @@ public abstract class BaseChart {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public float getMinValue() {
         return mMinValue;
     }
 
+    /**
+     *
+     * @return
+     */
     public abstract float getCellHeight();
 
+    /**
+     *
+     * @return
+     */
     public abstract float getCellWidth();
 
+    /**
+     * Create a Chart from Class.
+     * @param chartView
+     * @param clazz
+     * @return
+     * @throws NoSuchMethodException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     * @throws InstantiationException
+     */
     public static BaseChart newInstance(GeyekChartView chartView, Class<? extends BaseChart> clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class[] paramTypes = {GeyekChartView.class};
         Object[] params = {chartView};
@@ -194,4 +142,152 @@ public abstract class BaseChart {
             return null;
         }
     }
+
+    //---------------------------------------Set Point Data Method Area. Start---------------------------------------
+
+    /**
+     *  Calculate the maximum and minimum value.
+     */
+    protected void refreshMaxAndMinValue() {
+        for (Float point : mPointList) {
+            if (point == null) {
+                continue;
+            }
+
+            if (mIsAutoMaxValue) {
+                if (mMaxValue < point) {
+                    mMaxValue = point;
+                }
+            }
+
+            if (mIsAutoMinValue) {
+                if (mMinValue > point) {
+                    mMinValue = point;
+                }
+            }
+        }
+
+        if (mMaxValue < mMinValue) {
+            float temp = mMaxValue;
+            mMaxValue = mMinValue;
+            mMinValue = temp;
+        }
+    }
+
+    /**
+     *
+     * @param point
+     * @return
+     */
+    public void setPoint(Float point) {
+        mPointList.add(point);
+        refreshMaxAndMinValue();
+    }
+
+    /**
+     *
+     * @param point
+     * @param position
+     */
+    public void setPoint(Float point, int position) {
+        if (position < 0) {
+            position = mPointList.size();
+        }
+        mPointList.add(position, point);
+        refreshMaxAndMinValue();
+    }
+
+    /**
+     *
+     * @param pointList
+     * @return
+     */
+    public void setPointList(List<Float> pointList) {
+        if (pointList == null) {
+            return ;
+        }
+        mPointList.addAll(pointList);
+        refreshMaxAndMinValue();
+    }
+
+    /**
+     *
+     * @param pointList
+     * @param position
+     * @return
+     */
+    public void setPointList(List<Float> pointList, int position) {
+        if (position < 0) {
+            position = mPointList.size();
+        }
+
+        if (pointList == null) {
+            return ;
+        }
+        mPointList.addAll(position, pointList);
+        refreshMaxAndMinValue();
+    }
+
+    /**
+     *
+     * @param point
+     * @param position
+     */
+    public void replace(Float point, int position) {
+        int size = mPointList.size();
+        if (position < 0) {
+            position = size;
+        }
+        if (size > position) {
+            mPointList.remove(position);
+            mPointList.add(position, point);
+        } else {
+            mPointList.add(point);
+        }
+        refreshMaxAndMinValue();
+    }
+
+    /**
+     *
+     * @param pointList
+     * @param fromPosition
+     */
+    public void replace(List<Float> pointList, int fromPosition) {
+        if (pointList == null) {
+            return ;
+        }
+
+        int size = mPointList.size();
+        if (fromPosition < 0) {
+            fromPosition = size;
+        }
+
+        for (Float point : pointList) {
+            if (size > fromPosition) {
+                mPointList.remove(fromPosition);
+                mPointList.add(fromPosition++, point);
+            } else {
+                mPointList.add(point);
+            }
+        }
+
+        refreshMaxAndMinValue();
+    }
+
+    /**
+     *  Clear all of the collection's data.
+     */
+    public void clear() {
+        mPointList.clear();
+
+        if (mIsAutoMaxValue) {
+            mMaxValue = 0;
+        }
+
+        if (mIsAutoMinValue) {
+            mMinValue = 0;
+        }
+    }
+
+    //---------------------------------------Set Point Data Method Area. End---------------------------------------
 }
