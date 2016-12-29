@@ -1,0 +1,26 @@
+GridGround gridGround = new GridGround(mCharView);
+        gridGround.setLineColor(Color.RED);
+        gridGround.setSubLineColor(Color.RED);
+        gridGround.setLineWidth(5);
+        gridGround.setSubLineWidth(2);
+        gridGround.setXNum(15);
+        gridGround.setSubXNum(5);
+        gridGround.setYNum(10);
+        gridGround.setSubYNum(5);
+        mCharView.setBackground(gridGround);
+
+        /*BarChart barChart = new BarChart(mCharView);
+        barChart.setMaxValue(60);
+        barChart.setMinValue(-60);
+        barChart.setMaxItem(10);
+        barChart.setShaderColor(*//*Color.parseColor("#00ECFF"), Color.BLACK, Color.RED, Color.YELLOW, Color.GRAY, *//*Color.parseColor("#0048FF"));
+        barChart.setSpacing(5);
+        barChart.setPoint(60);
+        barChart.setPoint(33);
+        barChart.setPoint(21);
+        barChart.setPoint(5);
+        barChart.setPoint(34);
+        barChart.setPoint(10);
+        barChart.setPoint(23);
+        barChart.setFangXiang(BarChart.FangXiang.VERTICAL);
+        mCharView.setChart(barChart);*/
