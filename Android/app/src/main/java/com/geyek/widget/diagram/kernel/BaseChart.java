@@ -176,9 +176,17 @@ public abstract class BaseChart {
 
     public abstract float getCellWidth();
 
+    /**
+     * The class whose name is Builder, it create some chart which have the same property.
+     */
     public static class Builder {
-        private List<BaseChart> mChartList = new ArrayList<>();
         private GeyekChartView mGeyekChartView;
+        private List<BaseChart> mChartList = new ArrayList<>();
+        protected int mMaxItem = 1; //当前界面显示的最大条目数,最小为1
+        protected float mMaxValue;    //当前单个条目最大的值
+        protected float mMinValue;
+        protected boolean mIsAutoMaxValue;
+        protected boolean mIsAutoMinValue;
 
         public Builder(GeyekChartView geyekChartView) {
             mGeyekChartView = geyekChartView;
@@ -206,13 +214,95 @@ public abstract class BaseChart {
         }
 
         private void initial(BaseChart chart) {
-
+            chart.setMaxItem(mMaxItem);
+            chart.setMaxValue(mMaxValue);
+            chart.setMinValue(mMinValue);
+            chart.setAutoMaxValue(mIsAutoMaxValue);
+            chart.setAutoMinValue(mIsAutoMinValue);
         }
 
         private void refresh() {
             for (BaseChart chart : mChartList) {
                 initial(chart);
             }
+        }
+
+        public void setMaxItem(int item) {
+            for (BaseChart chart : mChartList) {
+                chart.setMaxItem(item);
+            }
+        }
+
+        public float getMaxItem() {
+            return mMaxItem;
+        }
+
+        public void setAutoMaxValue(boolean autoMaxValue) {
+            for (BaseChart chart : mChartList) {
+                chart.setAutoMaxValue(autoMaxValue);
+            }
+        }
+
+        public void setAutoMinValue(boolean autoMinValue) {
+            for (BaseChart chart : mChartList) {
+                chart.setAutoMinValue(autoMinValue);
+            }
+        }
+
+        public boolean isAutoMaxValue() {
+            return mIsAutoMaxValue;
+        }
+
+        public boolean isAutoMinValue() {
+            return mIsAutoMinValue;
+        }
+
+        public void setPointList(List<Float> pointList) {
+            for (BaseChart chart : mChartList) {
+                chart.setPointList(pointList);
+            }
+        }
+
+        public void setPoint(float point) {
+            for (BaseChart chart : mChartList) {
+                chart.setPoint(point);
+            }
+        }
+
+        public void setPoint(float point, int position) {
+            for (BaseChart chart : mChartList) {
+                chart.setPoint(point, position);
+            }
+        }
+
+        public void clear() {
+            for (BaseChart chart : mChartList) {
+                chart.clear();
+            }
+        }
+
+        public void clearChartList() {
+            mChartList.clear();
+        }
+
+        public void setMaxValue(float maxValue) {
+            for (BaseChart chart : mChartList) {
+                chart.setMaxValue(maxValue);
+            }
+        }
+
+        public float getMaxValue() {
+            return mMaxValue;
+        }
+
+        public void setMinValue(float minValue) {
+            for (BaseChart chart : mChartList) {
+                chart.setMinValue(minValue);
+            }
+        }
+
+        public float getMinValue() {
+            return mMinValue;
         }
     }
 
