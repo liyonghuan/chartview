@@ -6,6 +6,7 @@
                 tools:context="com.geyek.widget.MainActivity">
 
     <com.geyek.widget.diagram.GeyekChartView
+        android:background="@color/colorPrimary"
         android:id="@+id/chartview"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
