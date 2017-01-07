@@ -16,8 +16,8 @@ public abstract class BaseChart {
     protected GeyekChartView mCharView;
     protected List<Float> mPointList = new ArrayList<>();
     protected int mMaxItem = 1; //当前界面显示的最大条目数,最小为1
-    protected float mMaxValue;    //当前单个条目最大的值
-    protected float mMinValue;
+    protected float mMaxValue = Float.MIN_VALUE;    //当前单个条目最大的值
+    protected float mMinValue = Float.MAX_VALUE;
     protected boolean mIsAutoMaxValue;
     protected boolean mIsAutoMinValue;
 
@@ -57,22 +57,15 @@ public abstract class BaseChart {
     }
 
     /**
-     *
      * @param maxValue
      */
     public void setMaxValue(float maxValue) {
         if (mMaxValue < maxValue) {
             mMaxValue = maxValue;
         }
-        if (mMinValue > mMaxValue) {
-            float temp = mMinValue;
-            mMinValue = mMaxValue;
-            mMaxValue = temp;
-        }
     }
 
     /**
-     *
      * @return
      */
     public float getMaxValue() {
@@ -80,22 +73,15 @@ public abstract class BaseChart {
     }
 
     /**
-     *
      * @param minValue
      */
     public void setMinValue(float minValue) {
         if (mMinValue > minValue) {
             mMinValue = minValue;
         }
-        if (mMinValue > mMaxValue) {
-            float temp = mMinValue;
-            mMinValue = mMaxValue;
-            mMaxValue = temp;
-        }
     }
 
     /**
-     *
      * @return
      */
     public float getMinValue() {
@@ -103,19 +89,18 @@ public abstract class BaseChart {
     }
 
     /**
-     *
      * @return
      */
     public abstract float getCellHeight();
 
     /**
-     *
      * @return
      */
     public abstract float getCellWidth();
 
     /**
      * Create a Chart from Class.
+     *
      * @param chartView
      * @param clazz
      * @return
@@ -146,7 +131,7 @@ public abstract class BaseChart {
     //---------------------------------------Set Point Data Method Area. Start---------------------------------------
 
     /**
-     *  Calculate the maximum and minimum value.
+     * Calculate the maximum and minimum value.
      */
     protected void refreshMaxAndMinValue() {
         for (Float point : mPointList) {
@@ -166,16 +151,9 @@ public abstract class BaseChart {
                 }
             }
         }
-
-        if (mMaxValue < mMinValue) {
-            float temp = mMaxValue;
-            mMaxValue = mMinValue;
-            mMinValue = temp;
-        }
     }
 
     /**
-     *
      * @param point
      * @return
      */
@@ -185,7 +163,6 @@ public abstract class BaseChart {
     }
 
     /**
-     *
      * @param point
      * @param position
      */
@@ -198,20 +175,18 @@ public abstract class BaseChart {
     }
 
     /**
-     *
      * @param pointList
      * @return
      */
     public void setPointList(List<Float> pointList) {
         if (pointList == null) {
-            return ;
+            return;
         }
         mPointList.addAll(pointList);
         refreshMaxAndMinValue();
     }
 
     /**
-     *
      * @param pointList
      * @param position
      * @return
@@ -222,14 +197,13 @@ public abstract class BaseChart {
         }
 
         if (pointList == null) {
-            return ;
+            return;
         }
         mPointList.addAll(position, pointList);
         refreshMaxAndMinValue();
     }
 
     /**
-     *
      * @param point
      * @param position
      */
@@ -248,13 +222,12 @@ public abstract class BaseChart {
     }
 
     /**
-     *
      * @param pointList
      * @param fromPosition
      */
     public void replace(List<Float> pointList, int fromPosition) {
         if (pointList == null) {
-            return ;
+            return;
         }
 
         int size = mPointList.size();
@@ -275,17 +248,17 @@ public abstract class BaseChart {
     }
 
     /**
-     *  Clear all of the collection's data.
+     * Clear all of the collection's data.
      */
     public void clear() {
         mPointList.clear();
 
         if (mIsAutoMaxValue) {
-            mMaxValue = 0;
+            mMaxValue = Float.MIN_VALUE;
         }
 
         if (mIsAutoMinValue) {
-            mMinValue = 0;
+            mMinValue = Float.MAX_VALUE;
         }
     }
 
