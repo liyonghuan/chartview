@@ -32,6 +32,8 @@ public class LineChart extends BaseChart {
         float drawableHeight = mCharView.getDrawableHeight();
         float cellHeight = getCellHeight();
         float cellWidth = getCellWidth();
+        float maxValue = getMaxValue();
+        float minValue = getMinValue();
         float offset = getOffset();
         for (int i = 0; i < size; i++) {
             Float currentPoint = mPointList.get(i);
@@ -45,9 +47,9 @@ public class LineChart extends BaseChart {
             }
 
             float startX = offset + (i - 1) * cellWidth;
-            float startY = drawableHeight - (prePoint - mMinValue) * cellHeight;
+            float startY = drawableHeight - (prePoint - minValue) * cellHeight;
             float endX = mOffset + i * cellWidth;
-            float endY = drawableHeight - (currentPoint - mMinValue) * cellHeight;
+            float endY = drawableHeight - (currentPoint - minValue) * cellHeight;
 
             canvas.drawLine(startX, startY, endX, endY, paint);
 
@@ -57,14 +59,17 @@ public class LineChart extends BaseChart {
 
     /**
      * 获取单位值所占用的高度
+     *
      * @return
      */
     public float getCellHeight() {
-        float v = mMaxValue - mMinValue;
+        float maxValue = getMaxValue();
+        float minValue = getMinValue();
+        float v = maxValue - minValue;
         if (v != 0) {
             return mCharView.getDrawableHeight() / v;
         } else {
-            float v1 = mMaxValue - 0;
+            float v1 = maxValue - 0;
             if (v1 != 0) {
                 return mCharView.getDrawableHeight() / v1;
             } else {
@@ -75,6 +80,7 @@ public class LineChart extends BaseChart {
 
     /**
      * 获取单位值所占用的宽度
+     *
      * @return
      */
     public float getCellWidth() {
