@@ -1,10 +1,10 @@
-package com.geyek.widget.diagram.chart;
+package me.stiky.widget.diagram.chart;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
-import com.geyek.widget.diagram.GeyekChartView;
+import me.stiky.widget.diagram.ChartView;
 
 /**
  * Created by LiHuan on 2016/12/23.
@@ -13,7 +13,7 @@ public class CurveChart extends LineChart {
     private static final String TAG = "CurveChart";
     private Path mPath = new Path();
 
-    public CurveChart(GeyekChartView chartView) {
+    public CurveChart(ChartView chartView) {
         super(chartView);
     }
 

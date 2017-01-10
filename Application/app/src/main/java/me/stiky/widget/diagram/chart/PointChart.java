@@ -1,4 +1,4 @@
-package com.geyek.widget.diagram.chart;
+package me.stiky.widget.diagram.chart;
 
 /**
  * Created by LiHuan on 2016/12/23.

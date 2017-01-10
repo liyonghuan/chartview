@@ -1,26 +1,22 @@
-package com.geyek.widget;
+package me.stiky.widget;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 
-import com.geyek.widget.diagram.GeyekChartView;
-import com.geyek.widget.diagram.chart.LineChart;
-
-import java.util.ArrayList;
-import java.util.List;
+import me.stiky.widget.diagram.ChartView;
+import me.stiky.widget.diagram.chart.LineChart;
 
 public class MainActivity extends AppCompatActivity {
 
-    private GeyekChartView mCharView;
+    private ChartView mCharView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mCharView = (GeyekChartView) findViewById(R.id.chartview);
+        mCharView = (ChartView) findViewById(R.id.chartview);
         /*mCharView.setBackgroundColor(Color.DKGRAY);*/
 
         /*CurveChart curveChart = new CurveChart(mCharView);

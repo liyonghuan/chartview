@@ -3,9 +3,9 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.geyek.widget.MainActivity">
+                tools:context="me.stiky.widget.MainActivity">
 
-    <com.geyek.widget.diagram.GeyekChartView
+    <me.stiky.widget.diagram.ChartView
         android:background="@color/colorPrimary"
         android:id="@+id/chartview"
         android:layout_marginLeft="10dp"

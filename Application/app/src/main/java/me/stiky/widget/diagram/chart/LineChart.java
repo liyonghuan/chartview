@@ -1,10 +1,10 @@
-package com.geyek.widget.diagram.chart;
+package me.stiky.widget.diagram.chart;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.geyek.widget.diagram.GeyekChartView;
-import com.geyek.widget.diagram.kernel.BaseChart;
+import me.stiky.widget.diagram.ChartView;
+import me.stiky.widget.diagram.kernel.BaseChart;
 
 /**
  * Created by LiHuan on 2016/12/23.
@@ -17,7 +17,7 @@ public class LineChart extends BaseChart {
     private int mLineColor;
     private float mLineWidth;
 
-    public LineChart(GeyekChartView chartView) {
+    public LineChart(ChartView chartView) {
         super(chartView);
     }
 
