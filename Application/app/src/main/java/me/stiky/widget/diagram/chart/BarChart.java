@@ -1,4 +1,4 @@
-package com.geyek.widget.diagram.chart;
+package me.stiky.widget.diagram.chart;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -6,8 +6,8 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
 
-import com.geyek.widget.diagram.GeyekChartView;
-import com.geyek.widget.diagram.kernel.BaseChart;
+import me.stiky.widget.diagram.ChartView;
+import me.stiky.widget.diagram.kernel.BaseChart;
 
 /**
  * Created by LiHuan on 2016/12/19.
@@ -21,8 +21,8 @@ public class BarChart extends BaseChart {
 
     private FangXiang mFangXiang = FangXiang.VERTICAL;
 
-    public BarChart(GeyekChartView geyekChartView) {
-        super(geyekChartView);
+    public BarChart(ChartView chartView) {
+        super(chartView);
     }
 
     public enum FangXiang {

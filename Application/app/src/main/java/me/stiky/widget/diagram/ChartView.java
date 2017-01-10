@@ -1,20 +1,20 @@
-package com.geyek.widget.diagram;
+package me.stiky.widget.diagram;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.geyek.widget.diagram.kernel.BaseChart;
-import com.geyek.widget.diagram.kernel.BaseGround;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import me.stiky.widget.diagram.kernel.BaseChart;
+import me.stiky.widget.diagram.kernel.BaseGround;
 
 /**
  * Created by LiHuan on 2016-12-18.
  */
-public class GeyekChartView extends View {
+public class ChartView extends View {
 
     private BaseGround mBackground;
     private BaseGround mForeground;
@@ -77,19 +77,19 @@ public class GeyekChartView extends View {
     private int mRightTagWidth;
     private int mBottomTagHeight;
 
-    public GeyekChartView(Context context) {
+    public ChartView(Context context) {
         this(context, null);
     }
 
-    public GeyekChartView(Context context, AttributeSet attrs) {
+    public ChartView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public GeyekChartView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ChartView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    /*public GeyekChartView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    /*public ChartView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }*/
 
@@ -129,7 +129,7 @@ public class GeyekChartView extends View {
         canvas.restore();
     }
 
-    public GeyekChartView setBackground(BaseGround background) {
+    public ChartView setBackground(BaseGround background) {
         if (background == null) {
             return this;
         }
@@ -137,7 +137,7 @@ public class GeyekChartView extends View {
         return this;
     }
 
-    public GeyekChartView setForefground(BaseGround forefground) {
+    public ChartView setForefground(BaseGround forefground) {
         if (forefground == null) {
             return this;
         }
@@ -145,7 +145,7 @@ public class GeyekChartView extends View {
         return this;
     }
 
-    public GeyekChartView setChart(BaseChart chart) {
+    public ChartView setChart(BaseChart chart) {
         if (chart == null) {
             return this;
         }

@@ -1,8 +1,8 @@
-package com.geyek.widget.diagram.kernel;
+package me.stiky.widget.diagram.kernel;
 
 import android.graphics.Canvas;
 
-import com.geyek.widget.diagram.GeyekChartView;
+import me.stiky.widget.diagram.ChartView;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by LiHuan on 2016-12-18.
  */
 public abstract class BaseChart {
-    protected GeyekChartView mCharView;
+    protected ChartView mCharView;
     protected List<Float> mPointList = new ArrayList<>();
     protected int mMaxItem = 1; //当前界面显示的最大条目数,最小为1
     protected float mMaxValue = Float.MIN_VALUE;    //当前单个条目最大的值
@@ -21,7 +21,7 @@ public abstract class BaseChart {
     protected boolean mIsAutoMaxValue;
     protected boolean mIsAutoMinValue;
 
-    public BaseChart(GeyekChartView chartView) {
+    public BaseChart(ChartView chartView) {
         mCharView = chartView;
     }
 
@@ -109,8 +109,8 @@ public abstract class BaseChart {
      * @throws InvocationTargetException
      * @throws InstantiationException
      */
-    public static BaseChart newInstance(GeyekChartView chartView, Class<? extends BaseChart> clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        Class[] paramTypes = {GeyekChartView.class};
+    public static BaseChart newInstance(ChartView chartView, Class<? extends BaseChart> clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Class[] paramTypes = {ChartView.class};
         Object[] params = {chartView};
 
         if (clazz == null) {

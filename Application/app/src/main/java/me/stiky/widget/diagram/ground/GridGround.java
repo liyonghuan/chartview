@@ -1,10 +1,10 @@
-package com.geyek.widget.diagram.ground;
+package me.stiky.widget.diagram.ground;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.geyek.widget.diagram.GeyekChartView;
-import com.geyek.widget.diagram.kernel.BaseGround;
+import me.stiky.widget.diagram.ChartView;
+import me.stiky.widget.diagram.kernel.BaseGround;
 
 /**
  * Created by LiHuan on 2016/12/19.
@@ -20,7 +20,7 @@ public class GridGround extends BaseGround {
     private Paint mLinePaint = new Paint();
     private Paint mSubLinePaint = new Paint();
 
-    public GridGround(GeyekChartView chartView) {
+    public GridGround(ChartView chartView) {
         super(chartView);
     }
 

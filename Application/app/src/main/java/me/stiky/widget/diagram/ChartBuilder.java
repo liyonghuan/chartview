@@ -1,12 +1,12 @@
-package com.geyek.widget.diagram;
+package me.stiky.widget.diagram;
 
-import com.geyek.widget.diagram.kernel.BaseChart;
+import me.stiky.widget.diagram.kernel.BaseChart;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.geyek.widget.diagram.kernel.BaseChart.newInstance;
+import static me.stiky.widget.diagram.kernel.BaseChart.newInstance;
 
 /**
  * Created by LiHuan on 2016/12/23.
@@ -16,7 +16,7 @@ import static com.geyek.widget.diagram.kernel.BaseChart.newInstance;
 public class ChartBuilder {
     private static final String TAG = "ChartBuilder";
 
-    private GeyekChartView mGeyekChartView;
+    private ChartView mChartView;
     private List<BaseChart> mChartList = new ArrayList<>();
     protected int mMaxItem = 1; //当前界面显示的最大条目数,最小为1
     protected float mMaxValue;    //当前单个条目最大的值
@@ -24,14 +24,14 @@ public class ChartBuilder {
     protected boolean mIsAutoMaxValue;
     protected boolean mIsAutoMinValue;
 
-    public ChartBuilder(GeyekChartView geyekChartView) {
-        mGeyekChartView = geyekChartView;
+    public ChartBuilder(ChartView chartView) {
+        mChartView = chartView;
     }
 
     public BaseChart build(Class<? extends BaseChart> clazz) {
         BaseChart baseChart = null;
         try {
-            baseChart = newInstance(mGeyekChartView, clazz);
+            baseChart = newInstance(mChartView, clazz);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

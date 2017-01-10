@@ -1,16 +1,16 @@
-package com.geyek.widget.diagram.kernel;
+package me.stiky.widget.diagram.kernel;
 
 import android.graphics.Canvas;
 
-import com.geyek.widget.diagram.GeyekChartView;
+import me.stiky.widget.diagram.ChartView;
 
 /**
  * Created by LiHuan on 2016-12-18.
  */
 public abstract class BaseGround {
-    protected GeyekChartView mCharView;
+    protected ChartView mCharView;
 
-    public BaseGround(GeyekChartView chartView) {
+    public BaseGround(ChartView chartView) {
         mCharView = chartView;
     }
 
