@@ -1,4 +1,4 @@
-package me.stiky.widget.diagram.chart;
+package org.devlang.widget.diagram.chart;
 
 /**
  * Created by LiHuan on 2016/12/23.

@@ -1,4 +1,4 @@
-package me.stiky.widget.diagram.chart;
+package org.devlang.widget.diagram.chart;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -6,8 +6,8 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
 
-import me.stiky.widget.diagram.ChartView;
-import me.stiky.widget.diagram.kernel.BaseChart;
+import org.devlang.widget.diagram.ChartView;
+import org.devlang.widget.diagram.kernel.BaseChart;
 
 /**
  * Created by LiHuan on 2016/12/19.

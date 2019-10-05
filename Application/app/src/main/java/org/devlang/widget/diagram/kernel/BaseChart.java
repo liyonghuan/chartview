@@ -1,8 +1,8 @@
-package me.stiky.widget.diagram.kernel;
+package org.devlang.widget.diagram.kernel;
 
 import android.graphics.Canvas;
 
-import me.stiky.widget.diagram.ChartView;
+import org.devlang.widget.diagram.ChartView;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

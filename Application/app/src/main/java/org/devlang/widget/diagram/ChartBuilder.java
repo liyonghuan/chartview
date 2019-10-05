@@ -1,12 +1,12 @@
-package me.stiky.widget.diagram;
+package org.devlang.widget.diagram;
 
-import me.stiky.widget.diagram.kernel.BaseChart;
+import org.devlang.widget.diagram.kernel.BaseChart;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.stiky.widget.diagram.kernel.BaseChart.newInstance;
+import static org.devlang.widget.diagram.kernel.BaseChart.newInstance;
 
 /**
  * Created by LiHuan on 2016/12/23.

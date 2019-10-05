@@ -1,8 +1,8 @@
-package me.stiky.widget.diagram.kernel;
+package org.devlang.widget.diagram.kernel;
 
 import android.graphics.Canvas;
 
-import me.stiky.widget.diagram.ChartView;
+import org.devlang.widget.diagram.ChartView;
 
 /**
  * Created by LiHuan on 2016-12-18.

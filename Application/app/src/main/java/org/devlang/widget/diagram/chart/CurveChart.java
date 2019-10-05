@@ -1,10 +1,10 @@
-package me.stiky.widget.diagram.chart;
+package org.devlang.widget.diagram.chart;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
-import me.stiky.widget.diagram.ChartView;
+import org.devlang.widget.diagram.ChartView;
 
 /**
  * Created by LiHuan on 2016/12/23.

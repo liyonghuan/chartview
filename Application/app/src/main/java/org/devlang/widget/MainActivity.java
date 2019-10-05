@@ -1,11 +1,11 @@
-package me.stiky.widget;
+package org.devlang.widget;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import me.stiky.widget.diagram.ChartView;
-import me.stiky.widget.diagram.chart.LineChart;
+import org.devlang.widget.diagram.ChartView;
+import org.devlang.widget.diagram.chart.LineChart;
 
 public class MainActivity extends AppCompatActivity {
 

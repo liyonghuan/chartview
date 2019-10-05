@@ -1,4 +1,4 @@
-package me.stiky.widget.diagram;
+package org.devlang.widget.diagram;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,8 +8,8 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.stiky.widget.diagram.kernel.BaseChart;
-import me.stiky.widget.diagram.kernel.BaseGround;
+import org.devlang.widget.diagram.kernel.BaseChart;
+import org.devlang.widget.diagram.kernel.BaseGround;
 
 /**
  * Created by LiHuan on 2016-12-18.
